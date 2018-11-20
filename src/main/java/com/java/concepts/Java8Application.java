@@ -1,6 +1,7 @@
 package com.java.concepts;
 
-import com.java.concepts.Lambda.Ejemplos.PrimerEjemplo;
+import com.java.concepts.Lambda.BasicLambda;
+import com.java.concepts.Lambda.MethodReference;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -22,11 +23,14 @@ public class Java8Application {
 			switch (opcion) {
 				// 1. Clases anonimas vs expresiones lambda
 				case 1:
-					PrimerEjemplo.Filtro();
-					PrimerEjemplo.Runable();
-					PrimerEjemplo.Comparador();
+					BasicLambda.Filtro();
+					BasicLambda.Runable();
+					BasicLambda.Comparador();
 					break;
-
+				// 2. Method reference
+				case 2:
+					MethodReference.Ejemplos();
+					break;
 				default:
 					break;
 			}

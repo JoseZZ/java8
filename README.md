@@ -40,3 +40,86 @@
     ```
 + Los métodos de la clase Object no cuentan (equals, toString, etc).
 + Una interfaz funcional puede anotarse con *@FunctionalInterface*. Esta anotación sirve para que el compilador nos diga si es una interfaz funcional o no.
++ Java 8 ofrece hasta 43 interfaces funcionales en el paquete java.util.function. Las más usadas son:
+
+## Interface de *java.util.function* mas usadas
+### Suplier
+
+No acepta ningun objeto y devuelve un objeto.
+  
+```java
+  @FunctionalInterface
+  public interface Supplier<T> {
+      T get();  
+  }
+```
+###Consumer
+Acepta un objeto y no devuelve nada.
+        
+  ```java
+  @FunctionalInterface
+  public interface Consumer<T> {
+      void accept(T t);
+  }
+```
+ 
+BiConsumer: acepta dos objetos, que pueden ser de tipos distintos, y no devuelve nada.
+          
+   ```java
+    @FunctionalInterface
+    public interface BiConsumer<T, U> {
+        void accept(T t, U u);
+    }
+  ```
+      
+###Predicate
+Acepta un objeto como parametro y devuelve un boolean.
+            
+ ```java
+  @FunctionalInterface
+  public interface Predicate<T> {
+      boolean test(T t);
+  }
+```
+    
+BiPredicate: acepta dos objetos como parametros, que pueden ser de distinto tipo, y devuelve un boolean.
+              
+   ```java
+    @FunctionalInterface
+    public interface Predicate<T> {
+        boolean test(T t);
+    }
+  ```
+### Function
+Toma un objeto como parámetro y devuelve otro objecto.
+
+```java
+@FunctionalInterface
+public interface Function<T, R> {
+    R apply(T t);
+}
+```
+BiFunctional: toma dos objetos como parámetro y devuelve uno.
+
+```java
+@FunctionalInterface
+public interface BiFunction<T, U, R> {
+    R apply(T t, U u);
+}
+```
+
+UnaryOperator: toma un objeto y devuelve un objeto del mismo tipo
+
+```java
+@FunctionalInterface
+public interface UnaryOperator<T> extends Function<T, T> {
+}
+```
+
+BinaryOperator: toma dos objetos del mismo tipo y devuelve un objeto del mismo tipo
+
+```java
+@FunctionalInterface
+public interface BinaryOperator<T> extends BiFunction<T, T, T> {
+}
+```

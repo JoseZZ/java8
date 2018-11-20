@@ -1,4 +1,4 @@
-package com.java.concepts.Lambda.Ejemplos;
+package com.java.concepts.Lambda;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Jose Gonzalez on 19/11/2018.
  */
-public class PrimerEjemplo {
+public class BasicLambda {
 
     public static void Filtro(){
         // Esta clase genera un filtro para archivos java
@@ -60,6 +60,7 @@ public class PrimerEjemplo {
         t.start();
         t.join();
 
+        // Ponemos el contenido de la expresion lambda entre llaves ya que es mas de una linea
         Runnable lambdable = () -> {
             for(int i = 0; i < 3; i++){
                 System.out.println("Hola desde el hilo lambda [" +
@@ -86,7 +87,9 @@ public class PrimerEjemplo {
             System.out.println(s);
         }
 
-        Comparator<String> lambdaComp = (String s1, String s2) -> Integer.compare(s1.length(), s2.length());
+        // No es necesario indicar el tipo de los parametros. El compilador se encarga en este caso
+        // de identificar que se trata de un String
+        Comparator<String> lambdaComp = (s1, s2) -> Integer.compare(s1.length(), s2.length());
         List<String> newList = Arrays.asList("***", "*", "**", "****");
         System.out.println("-- Comparador lambda (" + newList.toString() + ") --");
         Collections.sort(newList, lambdaComp);
