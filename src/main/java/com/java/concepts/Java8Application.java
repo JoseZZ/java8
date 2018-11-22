@@ -1,7 +1,10 @@
 package com.java.concepts;
 
+import com.java.concepts.Functions.Predicates;
 import com.java.concepts.Lambda.BasicLambda;
 import com.java.concepts.Lambda.MethodReference;
+import com.java.concepts.Stream.ChainConsumers;
+import com.java.concepts.Stream.MapFilterReduce;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -30,6 +33,18 @@ public class Java8Application {
 				// 2. Method reference
 				case 2:
 					MethodReference.Ejemplos();
+					break;
+				// 3. Functions
+				case 3:
+					Predicates.Ejemplos();
+					break;
+				// 4. Functions
+				case 4:
+					ChainConsumers.ForEach();
+					break;
+				// Streams
+				case 5:
+					MapFilterReduce.Operaciones();
 					break;
 				default:
 					break;

@@ -40,10 +40,12 @@
     ```
 + Los métodos de la clase Object no cuentan (equals, toString, etc).
 + Una interfaz funcional puede anotarse con *@FunctionalInterface*. Esta anotación sirve para que el compilador nos diga si es una interfaz funcional o no.
-+ Java 8 ofrece hasta 43 interfaces funcionales en el paquete java.util.function. Las más usadas son:
++ Java 8 ofrece hasta 43 interfaces funcionales en el paquete java.util.function.
++ Metodos por defecto (default): son métodos que se añaden a las interfaces y que contienen su implementación. Se han creado para poder añadir nuevas funcionalidades a las interfaces sin perder la compatibilidad con versiones más antiguas de Java.
+  Los métodos por defecto van precedidos de la palabra *default*. Se pueden definir métodos estáticos.
 
 ## Interface de *java.util.function* mas usadas
-### Suplier
+### Supplier
 
 No acepta ningun objeto y devuelve un objeto.
   
@@ -54,7 +56,7 @@ No acepta ningun objeto y devuelve un objeto.
   }
 ```
 ###Consumer
-Acepta un objeto y no devuelve nada.
+Acepta un objeto y no devuelve nada. Se utiliza para realizar una operacion sobre el objeto que se le pasa.
         
   ```java
   @FunctionalInterface
@@ -123,3 +125,31 @@ BinaryOperator: toma dos objetos del mismo tipo y devuelve un objeto del mismo t
 public interface BinaryOperator<T> extends BiFunction<T, T, T> {
 }
 ```
+## Streams
+Es una nueva interfaz que permite procesar datos de forma eficiente.
+Es un objeto que permite definir operaciones sobre los datos (map/filter/reduce).
+
+El stream no almacena los datos, solo los procesa, y no los cambia. Procesa lo datos en paralelo y utilizando un pipeline, realizando una sola pasada sobre los datos.
+Map/Filter/Reduce es un algoritmo que se utiliza normalmente para procesar streams
++ Map -> Transforma de alguna forma los datos de entrada. El tamaño de la lista de entrada es el mismo que la salida.
+  Es una operacion intermedia que se modela con la interfaz Function, y tiene una Function como entrada.
++ Filter -> Recibe una lista de un tipo y devuelve otra del mismo tipo, pero filtra los datos mediante algun criterio,
+  por lo que el tamaño puede ser distinto debido a los elementos que se han eliminado por no cumplir el filtro
++ Reduce -> es equivalente a operaciones SQL de agregacion (suma, etc). Hay dos tipos de reducciones:
+  + Agregacion: min, max, sum, etc.
+  + Operaciones de reduccion: del tipo BinaryOperator, que toma dos parametros del mismo tipo y devuelve un objeto de ese mismo tipo.
+  
+  La reducción de un stream vacío es el elemento identidad. 
+  Si un stream tiene solo un elemento, la reduccion es ese elemento.
+  
+Todas las operaciones sobre un Stream que devuelvan un Stream (como filter por ejemplo) son operaciones *lazy*. Cuando se invocan son solo declaraciones, no procesan datos. 
+Se denominan operaciones intermediarias.
+
+####FlatMap
+Es similar al Map, pero toma un stream como parámetro, y deuvelve un stream que incluye los elementos del stream pasado como parámetro.
+
+```java
+<R> Stream <R> map(Function<T, R> mapper);
+<R> Stream <R> flatMap(Function<T, Stream<R>> flatMapper);
+```
+  
